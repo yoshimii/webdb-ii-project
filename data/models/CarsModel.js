@@ -1,17 +1,17 @@
 const knex = require('knex')
-const db = require('./dbConfig')
+const db = require('../dbConfig')
 
 module.exports = {
     get(id) {
         return (id) 
-            ? db('cars')
-            : db('cars').where('id', id)
+            ? db('cars').where('id', id)
+            : db('cars')
     },
 
     insert(body) {
         return db('cars')
-            .insert(req.body)
-            .then(_ => req.body)
+            .insert(body)
+            .then(_ => body)
     },
 
     update(id, changes) {
@@ -22,7 +22,7 @@ module.exports = {
 
     remove(id) {
         return db('cars')
-        .where('id', id)
-        .delete()
+            .where('id', id)
+            .delete()
     }
 }
