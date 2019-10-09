@@ -4,14 +4,14 @@ const db = require('../dbConfig')
 module.exports = {
     get(id) {
         return (id) 
-            ? db('sales')
-            : db('sales').where('id', id)
+            ? db('sales').where('id', id)
+            : db('sales')
     },
 
     insert(body) {
         return db('sales')
-            .insert(req.body)
-            .then(_ => req.body)
+            .insert(body)
+            .then(_ => body)
     },
 
     update(id, changes) {

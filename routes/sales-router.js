@@ -15,15 +15,15 @@ router.get('/:id', async (req, res) => {
     const [err, sale] = await withCatch( SalesModel.get(req.params.id) )
     
     if (err) res.status(500).json({error: err})
-    else if (!sales.length) res.status(404).json({error: "No sales found."})
+    else if (!sale.length) res.status(404).json({error: "No sales found."})
     else res.status(200).json(sale)
 })
 
 router.post('/', async (req, res) => {
     const [err, sale] = await withCatch( SalesModel.insert(req.body) )
 
-    if(err) res.status(500).json({error: err})
-    else if (!sale.length) res.status(404).json({ error: "No sale was added"})
+    if (err) res.status(500).json({error: err})
+    else if (!Object.keys(sale).length) res.status(404).json({ error: "No sale was added"})
     else res.status(200).json(sale)
 })
 
